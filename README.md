@@ -1,1 +1,1 @@
-# kajo-kartta
+#Kajon leirisovelluksen karttakomponentti
