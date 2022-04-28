@@ -1,3 +1,17 @@
 svg {
     shape-rendering: crispEdges;
   }
+
+/* #karttadiv {
+  max-width: 100vw;
+  max-height: 100vh;
+} */
+
+
+.dot {
+  height: 5px;
+  width: 5px;
+  background-color: #ff0000 ;
+  border-radius: 50%;
+  display: inline-block;
+}
