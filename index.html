@@ -1,0 +1,34 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="styles.css">
+
+    <script src="detect-zoom.js"></script>
+
+    <script>
+        console.log("zoom+device")
+
+
+        var zoom = detectZoom.zoom();
+        var device = detectZoom.device();
+
+        console.log(zoom, device);
+    </script>
+</head>
+
+<body>
+    <canvas style="display: flex; margin: auto;" id="Canvas" width="2160" height="3840"></canvas>
+    <script src='./kartta.js'></script>
+
+
+    <span id="text"></span>
+
+    <button id="zoom" style="height: 10em; width: 10em;">zoom!!</button>
+
+    <button id="unzoom" style="height: 10em; width: 10em;">unzoom!!</button>
+
+
+
+</body>
+
+</html>
