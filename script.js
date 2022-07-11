@@ -8,10 +8,10 @@ let MIN_ZOOM = 1
 let SCROLL_SENSITIVITY = 0.01
 
 let lowDetailImage = new Image()
-lowDetailImage.src = "./asemakaava.png"
+lowDetailImage.src = "./epätarkkakartta.png"
 
 let highDetailImage = new Image()
-highDetailImage.src = "./asemakaava_töherrys.png"
+highDetailImage.src = "./tarkkakartta.png"
 
 
 
@@ -39,7 +39,7 @@ function draw()
 
 
 
-    if (cameraZoom > 1.5) {
+    if (cameraZoom > 2) {
         image = highDetailImage
 
     }
