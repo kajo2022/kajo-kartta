@@ -7,7 +7,7 @@ let cameraOffset = {
 }
 let cameraZoom = 1
 let MAX_ZOOM = 8
-let MIN_ZOOM = 1
+let MIN_ZOOM = 0.5
 let SCROLL_SENSITIVITY = 0.01
 
 let lowDetailImage = new Image()
@@ -32,6 +32,7 @@ function draw() {
     canvas.style.width = rect.width + 'px';
     canvas.style.height = rect.height + 'px';
 
+    //***
 
 
 
@@ -81,14 +82,8 @@ function getEventLocation(e) {
     }
 }
 
-function drawRect(x, y, width, height) {
-    ctx.fillRect(x, y, width, height)
-}
 
-function drawText(text, x, y, size, font) {
-    ctx.font = `${size}px ${font}`
-    ctx.fillText(text, x, y)
-}
+
 
 let isDragging = false
 let dragStart = {
