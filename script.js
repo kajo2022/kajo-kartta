@@ -21,8 +21,18 @@ ctx.imageSmoothingQuality = 'high';
 function draw() {
 
 
-    canvas.height = window.innerHeight
-    canvas.width = window.innerWidth
+    let rect = canvas.getBoundingClientRect();
+
+    canvas.height = rect.height * devicePixelRatio//window.innerHeight
+    canvas.width = rect.width * devicePixelRatio //window.innerWidth
+
+
+    ctx.scale(devicePixelRatio, devicePixelRatio)
+
+    canvas.style.width = rect.width + 'px';
+    canvas.style.height = rect.height + 'px';
+
+
 
 
     // Translate to the canvas centre before zooming - so you'll always zoom on what you're looking directly at
@@ -155,17 +165,6 @@ function adjustZoom(zoomAmount, zoomFactor) {
 
 
 
-        // Set up CSS size.
-        canvas.style.width = canvas.style.width || canvas.width + 'px';
-        canvas.style.height = canvas.style.height || canvas.height + 'px';
-
-        // Resize canvas and scale future draws.
-        let dpi = 600
-        var scaleFactor = dpi / 96;
-        canvas.width = Math.ceil(canvas.width * scaleFactor);
-        canvas.height = Math.ceil(canvas.height * scaleFactor);
-        var ctx = canvas.getContext('2d');
-        ctx.scale(scaleFactor, scaleFactor);
 
 
 
