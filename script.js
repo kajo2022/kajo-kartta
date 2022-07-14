@@ -7,7 +7,7 @@ let cameraOffset = {
 }
 let cameraZoom = 1
 let MAX_ZOOM = 8
-let MIN_ZOOM = 0.5
+let MIN_ZOOM = 0.4
 let SCROLL_SENSITIVITY = 0.01
 
 let lowDetailImage = new Image()
@@ -32,7 +32,6 @@ function draw() {
     canvas.style.width = rect.width + 'px';
     canvas.style.height = rect.height + 'px';
 
-    //***
 
 
 
@@ -52,7 +51,7 @@ function draw() {
 
 
 
-    if (cameraZoom > 2) {
+    if (cameraZoom > 1.4) {
         image = highDetailImage
 
     } else {
@@ -61,7 +60,7 @@ function draw() {
 
     }
 
-    ctx.drawImage(image, 0, 0, image.width, image.height,
+    ctx.drawImage(image, (image.width/2), (image.width/2), image.width, image.height,
         0, 0, canvas.width, canvas.height);
 
 }
