@@ -1,13 +1,20 @@
 let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext('2d')
 
+
+
+canvas.onload = ( (_e) => {
+    adjustZoom(-2)
+})
+
+
 let cameraOffset = {
     x: window.innerWidth / 2,
     y: window.innerHeight / 2
 }
-let cameraZoom = 1
+let cameraZoom = 0.31
 let MAX_ZOOM = 8
-let MIN_ZOOM = 0.4
+let MIN_ZOOM = 0.2
 let SCROLL_SENSITIVITY = 0.01
 
 let lowDetailImage = new Image()
@@ -18,8 +25,10 @@ highDetailImage.src = "./tarkkakartta.png"
 
 ctx.imageSmoothingQuality = 'high';
 
-function draw() {
 
+
+
+function draw() {
 
     let rect = canvas.getBoundingClientRect();
 
@@ -51,7 +60,7 @@ function draw() {
 
 
 
-    if (cameraZoom > 1.4) {
+    if (cameraZoom > 0.74) {
         image = highDetailImage
 
     } else {
@@ -60,8 +69,8 @@ function draw() {
 
     }
 
-    ctx.drawImage(image, (image.width/2), (image.width/2), image.width, image.height,
-        0, 0, canvas.width, canvas.height);
+    ctx.drawImage(image, 0, 0, image.width, image.height,
+        (canvas.width / -2.8), (canvas.height / -2.8), canvas.width, canvas.height);
 
 }
 
@@ -118,6 +127,28 @@ function handleTouch(e, singleTouchHandler) {
     }
 }
 
+function adjustZoom(zoomAmount, zoomFactor) {
+    if (!isDragging) {
+        if (zoomAmount) {
+            cameraZoom += zoomAmount
+        } else if (zoomFactor) {
+            console.log(zoomFactor)
+            cameraZoom = zoomFactor * lastZoom
+        }
+
+        cameraZoom = Math.min(cameraZoom, MAX_ZOOM)
+        cameraZoom = Math.max(cameraZoom, MIN_ZOOM)
+
+        console.log(zoomAmount)
+
+
+
+
+
+
+
+    }
+}
 let initialPinchDistance = null
 let lastZoom = cameraZoom
 
@@ -143,28 +174,7 @@ function handlePinch(e) {
     }
 }
 
-function adjustZoom(zoomAmount, zoomFactor) {
-    if (!isDragging) {
-        if (zoomAmount) {
-            cameraZoom += zoomAmount
-        } else if (zoomFactor) {
-            console.log(zoomFactor)
-            cameraZoom = zoomFactor * lastZoom
-        }
 
-        cameraZoom = Math.min(cameraZoom, MAX_ZOOM)
-        cameraZoom = Math.max(cameraZoom, MIN_ZOOM)
-
-        console.log(zoomAmount)
-
-
-
-
-
-
-
-    }
-}
 
 canvas.addEventListener('mousedown', onPointerDown)
 canvas.addEventListener('touchstart', (e) => handleTouch(e, onPointerDown))
