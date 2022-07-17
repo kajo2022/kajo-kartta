@@ -2,10 +2,10 @@ let canvas = document.getElementById("canvas")
 let ctx = canvas.getContext('2d')
 
 
+let magicWidthNumber;
 
-canvas.onload = ( (_e) => {
-    adjustZoom(-2)
-})
+let magicHeightNumber; 
+
 
 
 let cameraOffset = {
@@ -15,7 +15,7 @@ let cameraOffset = {
 let cameraZoom = 0.31
 let MAX_ZOOM = 8
 let MIN_ZOOM = 0.2
-let SCROLL_SENSITIVITY = 0.01
+let SCROLL_SENSITIVITY = 0.01 
 
 let lowDetailImage = new Image()
 lowDetailImage.src = "./epätarkkakartta.png"
@@ -25,15 +25,28 @@ highDetailImage.src = "./tarkkakartta.png"
 
 ctx.imageSmoothingQuality = 'high';
 
-
+let abc = false
 
 
 function draw() {
 
+
+/* 
+    magicWidthNumber = (canvas.width / -2.8)
+    magicHeightNumber = (canvas.height / -2.8)
+         */
     let rect = canvas.getBoundingClientRect();
 
     canvas.height = rect.height * devicePixelRatio//window.innerHeight
     canvas.width = rect.width * devicePixelRatio //window.innerWidth
+
+    
+    if (!abc) {
+        magicWidthNumber = (canvas.width / -2.8)
+        magicHeightNumber = (canvas.height / -2.8)
+        console.log('abc',abc)
+        abc = true
+        }
 
 
     ctx.scale(devicePixelRatio, devicePixelRatio)
@@ -69,8 +82,9 @@ function draw() {
 
     }
 
+
     ctx.drawImage(image, 0, 0, image.width, image.height,
-        (canvas.width / -2.8), (canvas.height / -2.8), canvas.width, canvas.height);
+        magicWidthNumber, magicHeightNumber, canvas.width, canvas.height);
 
 }
 
@@ -138,13 +152,6 @@ function adjustZoom(zoomAmount, zoomFactor) {
 
         cameraZoom = Math.min(cameraZoom, MAX_ZOOM)
         cameraZoom = Math.max(cameraZoom, MIN_ZOOM)
-
-        console.log(zoomAmount)
-
-
-
-
-
 
 
     }
